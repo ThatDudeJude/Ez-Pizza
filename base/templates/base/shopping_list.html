@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<main>    
+        <div class="shopping-cart-items text-white">
+            <div class="container">
+                <div class="row py-5">
+                    <h1 class="col-12 text-center">Shopping Cart</h1>
+                    <table class="table table-striped table-hover" id="shopping-cart-table">
+                        <thead>
+                            <tr class="fs-4">
+                                <th scope="Col">Food Item</th>
+                                <th scope="Col">Choices</th>
+                                <th scope="Col">Price</th>
+                                <th scope="Col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if shopping_cart %}
+                            {% for item in shopping_cart %}                    
+                            <tr>                                                
+                                <td class=""><span>{{item.food_item}}</span></td>
+                                <td class=""><span>{{item.choices}}</span></td>
+                                <td style="font-family: Arial;"><span>${{item.price}}</span></td>                                                
+                                <td ><button class='btn btn-delete-cart-item' data-bs-toggle="modal" data-bs-target="#shoppingCartModal" data-itemid="{{item.id}}" ><i class="fas fa-trash-alt"></i></button></td>
+                            </tr>                                            
+                            {% endfor %}
+                            <tr class="shopping-cart-total">
+                                <td colspan="2" class="fs-2 px-sm-5 px-2">Total</td>
+                                <td colspan="2" class="text-center fs-2 text-start" style="font-family: Arial;">${{total_price}}</td>
+                            </tr>                            
+                            {% else %} 
+                                <tr>
+                                    <td colspan='4' class="text-center fs-3"> No Items in Shopping Cart</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                        
+                    </table>
+                    {% if shopping_cart %}
+                    <div class="row text-center justify-content-around py-5">
+                        <button type="button" id="place-order" class="btn btn-success btn-lg btn-block col-5 col-sm-5" data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Place Order</button>
+                        <a href="{% url 'show-ordered-items' 'retrieve' %}" type="button" name="" id="view-orders-button" class="btn btn-success btn-lg btn-block col-5 col-sm-5" >View Orders</a>
+                    </div>
+                    {% else %}
+                    <div class="row text-center justify-content-around py-5">
+                        <a href="{% url 'index' %}#menu" type="button" name="" id="view-menu-button" class="btn btn-success btn-lg btn-block col-5 col-sm-5" >View Menu</a>
+                        <a href="{% url 'show-ordered-items' 'retrieve' %}" type="button" name="" id="views-orders-button" class="btn btn-success btn-lg btn-block col-5 col-sm-5" >View Orders</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>    
+</main>
+
+<!-- Modal -->
+<div class="modal fade text-dark" id="shoppingCartModal" tabindex="-1" aria-labelledby="modelTitleId" aria-hidden="true">
+                                    
+</div>
+
+
+
+{% endblock body %}
+
+{% block scripts %}
+<script type="text/babel" src="{% static 'js/shopping_cart.js' %}"></script>    
+{% endblock scripts %}

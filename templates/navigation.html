@@ -1,0 +1,51 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       <div class="container-fluid">
+           <a class="navbar-brand" href="{% url 'index' %}">EzPizza</a>
+           <ul class="nav justify-content-center" id="nav-large">
+            <li class="nav-item mx-1">
+                <a class="nav-link active" href="{% url 'index' %}#menu">Menu</a>
+            </li>
+            <li class="nav-item mx-1">                
+                <a class="nav-link" href="{% url 'show-ordered-items' 'retrieve' %}">Orders</a>                                
+            </li>
+            <li class="nav-item mx-1">
+                <a class="nav-link" href="{% url 'show-shopping-cart' 'page' %}">View Cart</a>
+            </li>
+        </ul>
+           <div class="dropdown bg-dark">            
+               {% if request.user.is_authenticated %}
+               <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" 
+                       aria-expanded="false">
+                       <img src="{{request.user.avatar.url}}" class='account-avatar' alt="avatar">                       
+                           {{request.user.username}}
+                       </button>
+               <ul class="dropdown-menu align-content-center" aria-labelledby="dropdownMenuButton1">
+                    <li><a href="{% url 'user-profile' 'view' %}"  class="dropdown-item">Profile</a></li>
+                    <li><a href="{% url 'logout-user' %}"  class="dropdown-item">Logout</a></li>
+               </ul>
+               {% else %}
+               <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" 
+               aria-expanded="false">
+               <img src="{% static 'images/default_avatar.svg' %}" class='account-avatar' alt="avatar">                       
+                   Username
+               </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">            
+                    <li><a href="{% url 'login-user' %}"  class="dropdown-item">Login</a></li>
+                </ul>
+               {% endif %}
+           </div>
+       </div>
+
+       <ul class="nav d-flex flex-row justify-content-center align-items-center my-3" id="nav-mobile">
+        <li class="nav-item mx-1">
+            <a class="nav-link active" href="{% url 'index' %}#menu">Menu</a>
+        </li>
+        <li class="nav-item mx-1">                
+            <a class="nav-link" href="{% url 'show-ordered-items' 'retrieve' %}">Orders</a>                                
+        </li>
+        <li class="nav-item mx-1">
+            <a class="nav-link" href="{% url 'show-shopping-cart' 'page' %}">View Cart</a>
+        </li>
+    </ul>
+   </nav>

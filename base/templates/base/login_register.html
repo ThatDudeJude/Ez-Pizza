@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <main class="mt-5">
+        <div class="login_register">
+            <div class="container">
+                <div class="row">
+                    <div class="login_form px-4 px-sm-5 py-4 my-5 text-light col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 col-10 offset-1">
+                        {% if auth == 'login' %}
+                        <form action="/user/login/" method="post">
+                            {% csrf_token %}
+                            <h1 class="col-12 text-center my-3">Login</h1>
+                            <div class="form-group my-3">
+                              <label for="email" class="fs-3">Email</label>
+                              <input type="text" name="email" id="email" class="form-control" placeholder="janedoe@example.com" aria-describedby="helpId">
+                              <small id="helpId" class="text-muted">Enter your email</small>                              
+                            </div>
+                            <div class="form-group my-3">
+                              <label for="password" class="fs-3">Password</label>
+                              <input type="password" name="password" id="password" class="form-control" placeholder="" aria-describedby="helpId">
+                              <small id="helpId" class="text-muted">Enter your password</small>
+                            </div>
+                            <div class="form-group col-12 my-3 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>                
+                            </div>
+                            
+                        </form>
+                        {% if messages %}
+                            <ul class="col-10 offset-1 fs-5 my-4">
+                            {% for message in messages %}
+                                <li>{{message}}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <div class="col-12 fs-5 my-4">
+                            <p>Don't have an account? Register <a href="{% url 'register-user' %}">here</a></p>
+                        </div>
+                            
+                        {% else %}
+                        <form action="/user/register/" method="post" id="register-user-form">
+                            {% csrf_token %}                            
+                             {% for field in form %}      
+                             
+                             <div class="form-group my-3">
+                                <label for="{{field.id_for_label}}" class="fs-4">{{field.label}}</label>
+                                {{ field }}                                
+                              </div>
+                              {{field.errors}}                       
+                              {% if field.id_for_label == 'id_password1' %}
+                              <ul>
+                                  <li>Your password can’t be too similar to your other personal information.</li>
+                                  <li>Your password must contain at least 8 characters.</li>
+                                  <li>Your password can’t be a commonly used password.</li>
+                                  <li>Your password can’t be entirely numeric.</li>
+                              </ul>
+                              {% endif %}
+                             {% endfor %}
+
+                             <div class="form-group col-12 my-3 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-success btn-lg btn-block">Register</button>                
+                            </div>
+                        </form>
+
+                        <div class="col-12 fs-5 my-4">
+                            <p>Already signed up? Login <a href="{% url 'login-user' %}">here</a></p>
+                        </div>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock body %}

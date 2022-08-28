@@ -1,0 +1,1 @@
+web: gunicorn ez_pizza.wsgi --log-file -

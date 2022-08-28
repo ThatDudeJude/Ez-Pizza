@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<main>
+        <div class="ordered-items text-white">
+                <div class="py-5" id="order-list">
+                                                            
+                </div>    
+                    <div class="d-flex flex-wrap column text-center justify-content-evenly py-5">
+                        {% if has_delivered %}                        
+                        <button type="button" name="" id="" class="btn btn-delete-delivered-item btn-lg btn-block col-12 col-md-3 mb-3" data-bs-toggle="modal" data-bs-target="#confirmDelete"> <i class="fas fa-trash    "></i> Delete Delivered</button>
+                        {% endif %}
+                        <a href="{% url 'index' %}#menu" type="button" name="" id="" class="btn btn-success btn-lg btn-block col-12 col-sm-4 col-md-3 mb-3" >View Menu</a>                        
+                        <a href="{% url 'show-shopping-cart' 'page' %}" type="button" name="" id="" class="btn btn-success btn-lg btn-block col-12 col-sm-4 col-md-3 mb-3" > View Cart</a>
+                    </div>
+                    
+                
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content bg-dark text-white-50">
+                <div class="modal-header d-flex justify-content-end">
+                    <button style="color: white" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span style="color: white" aria-hidden="true">&times;</span>
+                    </button>                                            
+                </div>
+                <div class="modal-body">
+                    <p class="col-12 text-center text-white fs-2">
+                        Delete all delivered orders?
+                    </p>
+                </div>
+                <div class="d-grid gap-2 modal-footer-modified">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cancel</button>
+                    <a href="{% url 'delete-delivered-orders' %}" type="button" class="btn btn-success"><i class="fas fa-trash    "></i>Confirm Delete</a>
+                </div>
+            </div>
+        </div>
+    
+</main>
+
+
+{% endblock body %}
+
+{% block scripts %}
+<script type="text/babel" src="{% static 'js/allOrders.js' %}"></script>    
+{% endblock scripts %}

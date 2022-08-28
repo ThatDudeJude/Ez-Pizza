@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <main>
+        <div class="profile">
+            <div class="container">
+                <div class="row" style="padding-top: 100px;">
+                    {% if type == 'view' %}
+                    <div class="profile_view px-2 px-sm-3 py-5 text-light col-md-8 offset-md-2 col-lg-6 offset-lg-3 offset-xl-4 col-12 position-relative">     
+                        <div class="avatar-container col-12 position-absolute">
+                            <img src="{{request.user.avatar.url}}" alt="avatar" id="profile-avatar">
+                        </div>     
+                        <div class="col-12 mt-5 justify-content-center ">
+                            <a href="{% url 'user-profile' 'update' %}" type="submit" class="btn btn-outline-success update_profile_btn">Update Profile</a>                
+                        </div>
+                        <table class="my-1 my-sm-4 mx-auto profile-table">
+                            <tbody>
+                                <tr class="py-3">
+                                    <td class="fs-4 p-3">Name:</td>
+                                    <td class="fs-5 py-3">{{profile.name}}</td>
+                                </tr>
+                                <tr class="py-3">
+                                    <td class="fs-4 p-3">Username:</td>
+                                    <td class="fs-5 py-3">{{profile.username}}</td>
+                                </tr>
+                                <tr class="py-3">
+                                    <td class="fs-4 p-3">Email:</td>
+                                    <td class="fs-5 py-3">{{profile.email}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+    
+                            
+                            
+                    </div>
+                    
+                        {% else %}        
+                        <div class="update_form px-4 px-sm-5 py-4 text-light col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 col-10 offset-1 position-relative">                        
+                            <div class="avatar-container col-12 position-absolute">
+                                <img src="{{request.user.avatar.url}}" alt="avatar" id="profile-avatar">
+                            </div>     
+                        <form action="/user/profile/update/" method="post" enctype="multipart/form-data" class="my-5" id="update-profile-form">
+                            {% csrf_token %}                            
+                             {% for field in form %}      
+                             
+                             <div class="form-group my-3">
+                                <label for="{{field.id_for_label}}" class="fs-4">{{field.label}}</label>
+                                {{ field }}                                
+                              </div>
+                              {{field.errors}}                                                     
+                             {% endfor %}
+
+                             <div class="form-group col-12 my-3 justify-content-center">
+                                <button type="submit" class="btn btn-success btn-lg btn-block">Update Profile</button>                
+                            </div>
+                        </form>   
+                        <script>
+                            const avatarImage = document.querySelector('#profile-avatar');
+                            const imageFileInput = document.querySelector('#id_avatar');
+                    
+                            avatarImage.onclick = () => {
+                                imageFileInput.click()                                 
+                            }
+                    
+                            imageFileInput.onchange = () => {
+                                if (imageFileInput.files &&  imageFileInput.files[0]) {
+                                    avatarImage.setAttribute('src', window.URL.createObjectURL(imageFileInput.files[0]))
+                                }
+                            }
+                        </script>
+                        {% endif %}
+                        
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock body %}
+
+

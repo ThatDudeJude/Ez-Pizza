@@ -1,0 +1,415 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<main>
+<div class="text-light text-center text-sm-start index-page">
+    <div class="block-body-showcase p-0">
+    <div class="container">
+        <div class="showcase p-0 row">
+            
+
+            <div id="special-carousel" class="carousel slide special col-12" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button data-bs-target="#special-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></li>
+                <button data-bs-target="#special-carousel" data-bs-slide-to="1"></li>                
+            </div>
+            <div class="carousel-inner mx-sm-2 px-sm-5">
+                <div class="carousel-item px-md-5 active">
+            
+                    <div class="py-5 px-lg-5">
+                        <h1>Regular Special</h1>
+                        <h3>Toppings</h3>
+                        <p class="fs-5">
+                            {{special_regular.delicacy}} 
+                        </p>
+
+                        <div class="order-special d-flex justify-content-center justify-content-sm-start flex-row align-items-center">
+                            <p class="fs-4 me-3" style="font-family: Arial;">
+                                Small: ${{special_regular.small}} 
+                            </p>
+                            <p class="fs-4 mx-3" style="font-family: Arial;">
+                                Large: ${{special_regular.large}} 
+                            </p>
+                        </div>
+                        
+                        <div class="order-special d-flex justify-content-center justify-content-sm-start align-items-lg-center">
+                            <div class="order-btn p-lg-0 pt-sm-4">
+                                {% if request.user.is_authenticated %}                                     
+                                
+                                <button id="order-special-regular" type="button" class="btn btn-success btn-lg btn-block regular-special-button" data-bs-toggle="modal" data-bs-target="#addItemModal">Order Now</button>
+                                {% else %}                                     
+                                <a href="{% url 'login-user' %}" type="button" class="btn btn-success btn-lg btn-block">Order Now</a>
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="carousel-item px-md-5">
+                
+                    <div class="py-5 px-lg-5">
+                        <h1>Sicillian Special</h1>
+                        <h3>Toppings</h3>
+                        <p class="fs-5">
+                            {{special_sicillian.delicacy}}
+                        </p>     
+                        
+                        <div class="order-special d-flex justify-content-center justify-content-sm-start flex-row align-items-center">
+                            <p class="fs-4 me-3" style="font-family: Arial;">
+                                Small: ${{special_sicillian.small}} 
+                            </p>
+                            <p class="fs-4 mx-3" style="font-family: Arial;">
+                                Large: ${{special_sicillian.large}} 
+                            </p>
+                        </div>
+                        
+                        <div class="order-special d-flex justify-content-center justify-content-sm-start align-items-lg-center">
+                            <div class="order-btn p-lg-0 pt-sm-4">
+                                {% if request.user.is_authenticated %}                                     
+                                <button id="order-special-sicillian" type="button" class="btn btn-success btn-lg btn-block sicillian-special-button" data-bs-toggle="modal" data-bs-target="#addItemModal">Order Now</button>
+                                {% else %}                                     
+                                <a href="{% url 'login-user' %}" type="button" class="btn btn-success btn-lg btn-block">Order Now</a>
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                    </div>                                    
+                </div>                
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#special-carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" id="next-carousel-button" type="button" data-bs-target="#special-carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        </div>
+        
+    </div>
+    </div>
+    <div class="block-body-menu py-5">
+    <div class="container">
+        <h1 id="menu">Menu</h1>
+        <div class="menu row">
+            <div class="accordion accordion-flush" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Pizza
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+                        <div class="accordion-body row mx-1">
+                            <div class="col-md-5 mt-3 col-sm-12">
+                                <div class="row regular">
+                                    <h3 class="col-12">Regular</h3>
+            
+                                    <!-- Regular Pizzas -->                                    
+
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">Small</th>
+                                                <th scope="col">Large</th>      
+                                                <th scope="col"></th>                                          
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for regular in regular_pizzas %}                    
+                                            <tr>                                                
+                                                <td>{{regular.delicacy}}</td>
+                                                <td>{{regular.small}}</td>
+                                                <td>{{regular.large}}</td>           
+                                                {% if request.user.is_authenticated %}                                     
+                                                <td><button type="button" class="btn btn-outline-success pizza-regular-button" data-bs-toggle="modal" data-bs-target="#addItemModal" data-shopitemid="{{regular.id}}">Shop</button></td>
+                                                {% else %}                                     
+                                                <td><a href="{% url 'login-user' %}" type="button" class="btn btn-outline-success pizza-regular-button">Shop</a></td>
+                                                {% endif %}
+                                            </tr>                                            
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    
+                                <!-- Sicillian Pizza -->
+
+                                </div>
+                            </div>
+                            <div class="col-md-5 offset-md-2 mt-3 col-sm-12">
+                                <div class="row regular">
+                                    <h3 class="col-12">Sicillian</h3>
+                                                                        
+
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">Small</th>
+                                                <th scope="col">Large</th>      
+                                                <th scope="col"></th>                                          
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for sicillian in sicillian_pizzas %}
+                                    
+                                            <tr>                                                
+                                                <td>{{sicillian.delicacy}}</td>
+                                                <td>{{sicillian.small}}</td>
+                                                <td>{{sicillian.large}}</td>
+                                                {% if request.user.is_authenticated %}
+                                                <td><button type="button" class="btn btn-outline-success pizza-sicillian-button" data-bs-toggle="modal" data-bs-target="#addItemModal" data-shopitemid="{{sicillian.id}}">Shop</button></td>
+                                                {% else %}                                     
+                                                <td><a href="{% url 'login-user' %}"class="btn btn-outline-success pizza-sicillian-button">Shop</a></td>
+                                                {% endif %}
+                                            </tr>                                            
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>                                    
+                                </div>
+                            </div>
+
+                            <!-- Toppings -->
+
+                            <div class="col-12 my-4">
+                                <div class="accordion col-12" id="accordionToppings">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTopping">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTopping" aria-expanded="true" aria-controls="collapseTopping">
+                                                Toppings
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTopping" class="accordion-collapse collapse show" aria-labelledby="headingTopping">
+                                            <div class="accordion-body px-sm-4 px-1 d-flex justify-content-center flex-column align-items-center">
+                                                <h3 class="col-12">Toppings</h3>
+                                            <ul class="toppings-list px-0">
+                                    {% for topping in toppings %}
+                                        <li class="mb-1 mx-sm-3 mx-2 my-2 my-sm-0">{{topping.topping}}</li>                                    
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+
+                                        </div>
+                                    </div>                                    
+                                </div>                                
+                                </ul>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sub -->
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Sub
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+                        <div class="accordion-body row">
+                            <div class="col-md-8 offset-md-2 mt-3 col-sm-12">
+                                
+                                <div class="row subs">
+                                    <h3 class="col-12">Sub Sandwiches</h3> 
+
+                          
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Small</th>
+                                        <th scope="col">Large</th>                                                
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for sub in subs %}
+                                    
+                                    <tr>                                                
+                                        <td>{{sub.sub}}</td>
+                                        {% if sub.small == 0.50 %}
+                                        <td>+{{sub.small}}</td>
+                                        <td>+{{sub.large}}</td>
+                                        <td></td>
+                                        {% else %}
+                                        <td>{{sub.small}}</td>
+                                        <td>{{sub.large}}</td>
+                                        {% if request.user.is_authenticated %}
+                                        <td><button type="button" class="btn btn-outline-success sub-button" data-bs-toggle="modal" data-bs-target="#addItemModal" data-shopitemid="{{sub.id}}">Shop</button></td>
+                                        {% else %}                                     
+                                        <td><a href="{% url 'login-user' %}"class="btn btn-outline-success sub-button">Shop</a></td>
+                                        {% endif %}
+                                        {% endif %}
+                                        
+                                    </tr>                                            
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Pasta -->
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Pasta
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
+                        <div class="accordion-body row">
+                            <div class="col-md-8 offset-md-2 mt-3 col-sm-12">
+                                
+                                <div class="row pastas">
+                                    <h3 class="col-6 mb-3">Pasta</h3> 
+                                    {% if request.user.is_authenticated %}
+                                    <button type="button" id="pasta-button" class="btn btn-outline-success col-3 offset-2 mb-3" data-bs-toggle="modal" data-bs-target="#addItemModal" data-shopitemid="">Shop</button>
+                                    {% else %}                                     
+                                                <a href="{% url 'login-user' %}"class="btn btn-outline-success col-3 offset-2 mb-3" id="shop-pasta">Shop</a>
+                                    {% endif %}
+
+
+                                    <table class="table table-striped table-hover col-12">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>                                                
+                                                <th scope="col">Fixed</th>                                                                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for pasta in pastas %}
+                                            
+                                            <tr>                                                
+                                                <td>{{pasta.pasta}}</td>                                                                                                                                            
+                                                <td>{{pasta.fixed}}</td>                                                                                                                                                                                            
+                                            </tr>                                            
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Salads
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour">
+                        <div class="accordion-body row">
+                            <div class="col-md-8 offset-md-2 mt-3 col-sm-12">
+                                
+                                <div class="row salads">
+                                    <h3 class="col-6 mb-3">Salad</h3> 
+                                    {% if request.user.is_authenticated %}
+                                    <button type="button" id="salad-button" class="btn btn-outline-success col-3 offset-2 mb-3 mb-3" data-bs-toggle="modal" data-bs-target="#addItemModal" data-shopitemid="">Shop</button>                
+                                    {% else %}                                     
+                                                <a href="{% url 'login-user' %}"class="btn btn-outline-success col-3 offset-2 mb-3 mb-3">Shop</a>
+                                                {% endif %}
+                                    <!-- Regular Pizzas -->
+                                                                        
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>                                                
+                                                <th scope="col">Fixed</th>                                                
+                                                <!-- <th scope="col"></th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for salad in salads %}                                            
+                                            <tr>                                                
+                                                <td>{{salad.salad}}</td>                                                                                                                                            
+                                                <td>{{salad.fixed}}</td>  
+                                                <!-- <td><button type="button" class="btn btn-outline-success">Shop</button></td>                                                                                                                                           -->
+                                            </tr>                                            
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Dinner Platter
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive">
+                        <div class="accordion-body row">
+                            <div class="col-md-8 offset-md-2 mt-3 col-sm-12">
+                                
+                                <div class="row platters">
+                                    <h3 class="col-12">Platter</h3> 
+                                    
+                                    <!-- Dinner Platter -->
+
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>                                                
+                                                <th scope="col">Small</th>                                                
+                                                <th scope="col">Large</th>          
+                                                <th scope="col"></th>                                      
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for platter in platters %}
+                                            
+                                            <tr>                                                
+                                                <td>{{platter.platter}}</td>                                                                                                                                            
+                                                <td>{{platter.small}}</td>                                                                                                                                            
+                                                <td>{{platter.large}}</td>      
+                                                {% if request.user.is_authenticated %}
+                                                <td><button type="button" class="btn btn-outline-success platter-button" data-bs-toggle="modal" data-bs-target="#addItemModal" data-shopitemid="{{platter.id}}">Shop</button></td>                                                                                                                                      
+                                                {% else %}                                     
+                                                <td><a href="{% url 'login-user' %}"class="btn btn-outline-success platter-button">Shop</a></td>
+                                                {% endif %}
+                                            </tr>                                            
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>        
+    
+    <!-- Modal -->
+    <div class="modal fade text-dark" id="addItemModal" tabindex="-1" aria-labelledby="modelTitleId" aria-hidden="true">
+                                    
+    </div>
+
+    <a href="{% url 'show-shopping-cart' 'page' %}" id="shopping" title="Shopping Cart">
+        <span class="fa-stack fa-2x shopping-cart" data-count="0">
+            <i class="fa fa-circle fa-stack-2x" ></i>
+            <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+    
+</div> 
+</main>   
+
+{% endblock body %}
+
+{% block scripts %}
+{% if request.user.is_authenticated %}
+<script type="text/babel" src="{% static 'js/order.js' %}"></script>    
+{% endif %}
+{% endblock scripts %}
