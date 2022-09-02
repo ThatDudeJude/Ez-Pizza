@@ -1,0 +1,1 @@
+[{"model": "shop.pasta", "pk": 1, "fields": {"pasta": "Baked Ziti w/Mozzarella", "fixed": "7.75"}}, {"model": "shop.pasta", "pk": 2, "fields": {"pasta": "Baked Ziti w/Meatballs", "fixed": "9.95"}}, {"model": "shop.pasta", "pk": 3, "fields": {"pasta": "Baked Ziti w/Chicken", "fixed": "10.95"}}]

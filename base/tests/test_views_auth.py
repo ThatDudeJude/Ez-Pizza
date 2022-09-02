@@ -81,13 +81,10 @@ class UserAuthenticationTestCase(TestCase):
     def test_login_required_redirect(self):
 
         c = Client()
-        response  = c.get('/view/shopping-cart/page/', follow=True)
+        response  = c.get('/shop/view-cart/page/', follow=True)
 
         self.assertIn('base/login_register.html', response.templates[0].name)
-        
-        response  = c.get('/view/show-ordered-items/retrieve/', follow=True)
-
-        self.assertIn('base/login_register.html', response.templates[0].name)
+                
     
     def test_login_logout(self):
         user = User.objects.get(username='TestUser')

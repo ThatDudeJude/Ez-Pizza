@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 from django.conf import settings
 from django.db import IntegrityError
 # from django.utils.six.moves import input
-from base.models import Regular, Sicillian, Topping, Sub, Pasta, Salad, Platter, SpecialRegular, SpecialSicillian
+from shop.models import Regular, Sicillian, Topping, Sub, Pasta, Salad, Platter, SpecialRegular, SpecialSicillian
 import csv
 import os
 

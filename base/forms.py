@@ -1,5 +1,3 @@
-from ast import Pass
-from cProfile import label
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import TextInput, EmailInput, PasswordInput, CharField, ImageField, FileInput
 from django.forms import ModelForm

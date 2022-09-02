@@ -1,0 +1,6 @@
+[{"model": "shop.shoppingcartitem", "pk": 1, "fields": {"client": 1, "food_item": "Pasta", "choices": "Baked Ziti w/Chicken", "price": "10.95", "created": "2022-08-17T10:12:01.977Z"}},
+{"model": "shop.shoppingcartitem", "pk": 2, "fields": {"client": 1, "food_item": "Platter (small + large)", "choices": "Chicken Parm", "price": "140.00", "created": "2022-08-17T10:12:02.323Z"}},
+{"model": "shop.shoppingcartitem", "pk": 3, "fields": {"client": 1, "food_item": "Regular (small)", "choices": "Topping(s): Pepperoni, Sausage, Mushrooms", "price": "16.95", "created": "2022-08-17T10:12:02.680Z"}},
+{"model": "shop.shoppingcartitem", "pk": 4, "fields": {"client": 1, "food_item": "Salad", "choices": "Salad w/ Tuna", "price": "9.75", "created": "2022-08-17T10:12:03.022Z"}},
+{"model": "shop.shoppingcartitem", "pk": 5, "fields": {"client": 1, "food_item": "Sicillian (small)", "choices": "Topping(s): Pepperoni, Sausage, Mushrooms", "price": "31.50", "created": "2022-08-17T10:12:03.351Z"}},
+{"model": "shop.shoppingcartitem", "pk": 6, "fields": {"client": 1, "food_item": "Sub Sandwich (small)", "choices": "Cheese + Steak + Mushrooms + Green Peppers + Onions", "price": "10.25", "created": "2022-08-17T10:12:03.701Z"}}]

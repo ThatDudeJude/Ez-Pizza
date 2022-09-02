@@ -2,14 +2,14 @@
 
 async function getItemData(orderItem, id) {
     console.log('Getting data');    
-    const res = await fetch(`/order/${orderItem}/${id}`);
+    const res = await fetch(`/shop/shopping/${orderItem}/${id}`);
     const data = await res.json();        
     return data;    
 }
 
 async function specialItemData(orderItem) {
     console.log('Getting Special data');    
-    const res = await fetch(`/order-special/${orderItem}/`);
+    const res = await fetch(`/shop/add/special/${orderItem}/`);
     const data = await res.json();        
     return data;    
 }
@@ -47,9 +47,9 @@ const CSRF = () => {
 }
 
 const getShoppingItemsCount = async () => {
-    let res = await fetch("/shop/shopping-cart/")
+    let res = await fetch("/shop/shopping-cart/")    
     let data = await res.json()            
-    document.querySelector('.shopping-cart').dataset.count =  data.items
+    document.querySelector('.shopping-cart').dataset.count =  data.totalItems
 }
 
 getShoppingItemsCount();
@@ -61,7 +61,7 @@ const SubmittedMessage = ({data}) => {
         console.log('submitting order', data.error);
         if (!data.error) {
             let csrf = document.querySelector('#csrftoken').value
-            await fetch('/shop/add-order-item/', {
+            await fetch('/shop/order-item/', {
                 method: "POST",                
                 headers: {
                     'Accept': 'application/json',

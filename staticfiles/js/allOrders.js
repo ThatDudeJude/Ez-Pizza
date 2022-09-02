@@ -2,7 +2,7 @@ const Order = () => {
     let [orderedItems, setOrderedItems] = React.useState(null)
 
     React.useEffect(async () => {
-        const res = await fetch(`/view/show-ordered-items/all`, {
+        const res = await fetch(`/order/view/show-orders/all/`, {
             method: 'GET'
         });
         const data = await res.json();
@@ -12,7 +12,7 @@ const Order = () => {
         choiceOrder.forEach((choice) => {
             choice.onchange = async () => {
                 if (choice.checked) {
-                    const res = await fetch(`/view/show-ordered-items/${choice.value.toUpperCase()}/`, {
+                    const res = await fetch(`/order/view/show-orders/${choice.value.toUpperCase()}/`, {
                         method: 'GET'
                     });
                     const data = await res.json();

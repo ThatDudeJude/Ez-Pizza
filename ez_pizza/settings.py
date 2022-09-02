@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
     'base.apps.BaseConfig', 
+    'shop.apps.ShopConfig', 
+    'order.apps.OrderConfig', 
 ]
 
 MIDDLEWARE = [
@@ -143,7 +145,7 @@ MEDIA_ROOT = BASE_DIR / 'static/images'
 CSV_PATH = BASE_DIR / 'csv_files'
 
 # Fixture dirs
-FIXTURE_DIRS = [BASE_DIR / 'base/tests/fixtures']
+FIXTURE_DIRS = [BASE_DIR / 'fixtures']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

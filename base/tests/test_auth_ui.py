@@ -1,15 +1,11 @@
-from lib2to3.pgen2 import driver
-from unicodedata import name
 from django.conf import settings
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from importlib_metadata import email
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.common.exceptions import ElementClickInterceptedException
 from base.models import User
 import time
 

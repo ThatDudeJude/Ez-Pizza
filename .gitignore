@@ -1,2 +1,3 @@
 .vscode/
 geckodriver.log
+secret_key.txt

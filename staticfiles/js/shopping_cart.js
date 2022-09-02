@@ -80,7 +80,7 @@ function ShoppingModal() {
 
         if (confirmOrderButton) {
             confirmOrderButton.onclick = async () => {
-                let res = await fetch('/view/shopping-cart/data/', {
+                let res = await fetch('/shop/view-cart/data/', {
                     method: 'GET'
                 })
                 let cartItems = await res.json()                
@@ -110,7 +110,7 @@ function ShoppingModal() {
     const addShoppingItemsToOrder = React.useCallback(async () => {
         if (!data.error) {
             let csrf = document.querySelector('#csrftoken').value
-            let res = await fetch(`/shop/order-items/`, {
+            let res = await fetch(`/order/add-cart-items/`, {
                 method: "POST",                
                 headers: {                  
                     'X-CSRFToken': csrf,

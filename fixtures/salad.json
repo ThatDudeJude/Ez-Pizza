@@ -1,0 +1,1 @@
+[{"model": "shop.salad", "pk": 1, "fields": {"salad": "Garden Salad", "fixed": "7.50"}}, {"model": "shop.salad", "pk": 2, "fields": {"salad": "Greek Salad", "fixed": "8.95"}}, {"model": "shop.salad", "pk": 3, "fields": {"salad": "Antipasto", "fixed": "9.75"}}, {"model": "shop.salad", "pk": 4, "fields": {"salad": "Salad w/ Tuna", "fixed": "9.75"}}]
