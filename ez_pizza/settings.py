@@ -139,7 +139,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
-MEDIA_ROOT = BASE_DIR / 'static/images'
+MEDIA_ROOT = BASE_DIR / 'staticfiles/images'
 
 # csv files 
 CSV_PATH = BASE_DIR / 'csv_files'
