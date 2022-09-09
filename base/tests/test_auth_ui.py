@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from base.models import User
+import os
 import time
 
 def scroll_to_menu_button(actions, driver, button):
@@ -124,10 +125,13 @@ class TestAuthenticationChrome(StaticLiveServerTestCase):
             EC.presence_of_element_located((By.XPATH, '//form[@id="update-profile-form"]'))
         )   
 
-        name_input = self.driver.find_element(By.CSS_SELECTOR, '#id_name')
+        avatar_input = self.driver.find_element(By.CSS_SELECTOR, "#id_avatar")
+        name_input = self.driver.find_element(By.CSS_SELECTOR, '#id_name')        
         username_input = self.driver.find_element(By.CSS_SELECTOR, '#id_username')
         email_input = self.driver.find_element(By.CSS_SELECTOR, '#id_email')
 
+        avatar_input.clear()
+        avatar_input.send_keys(os.getcwd() + "/base/tests/test_Dennis_image.jpg")
         name_input.clear()
         name_input.send_keys('Test Updated User')
         username_input.clear()

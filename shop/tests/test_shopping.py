@@ -22,7 +22,7 @@ class SitePagesTestCase(TestCase):
         # self.client.login(email=user.email, password='u555me666$!(')
         response = self.client.get("/", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertIn("base/index.html", response.templates[0].name)
+        self.assertTemplateUsed(response, "base/index.html")
 
         self.assertContains(response, 'Regular')
         self.assertContains(response, 'Sicillian')
@@ -66,7 +66,7 @@ class SitePagesTestCase(TestCase):
 
         data = response.json()
         
-        response = self.client.post('/shop/order-item/', 
+        response = self.client.post('/shop/order-items/', 
             data['message']
         ,         
         content_type= 'application/json')
@@ -99,7 +99,7 @@ class SitePagesTestCase(TestCase):
 
         data = response.json()
         
-        response = self.client.post('/shop/order-item/', 
+        response = self.client.post('/shop/order-items/', 
             data['message']
         ,         
         content_type= 'application/json')
@@ -134,7 +134,7 @@ class SitePagesTestCase(TestCase):
 
         data = response.json()
         
-        response = self.client.post('/shop/order-item/', 
+        response = self.client.post('/shop/order-items/', 
             data['message']
         ,         
         content_type= 'application/json')
@@ -167,7 +167,7 @@ class SitePagesTestCase(TestCase):
 
         data = response.json()
         
-        response = self.client.post('/shop/order-item/', 
+        response = self.client.post('/shop/order-items/', 
             data['message']
         ,         
         content_type= 'application/json')
@@ -196,7 +196,7 @@ class SitePagesTestCase(TestCase):
 
         data = response.json()
         
-        response = self.client.post('/shop/order-item/', 
+        response = self.client.post('/shop/order-items/', 
             data['message']
         ,         
         content_type= 'application/json')
@@ -229,7 +229,7 @@ class SitePagesTestCase(TestCase):
 
         data = response.json()
         
-        response = self.client.post('/shop/order-item/', 
+        response = self.client.post('/shop/order-items/', 
             data['message']
         ,         
         content_type= 'application/json')

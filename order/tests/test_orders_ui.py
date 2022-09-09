@@ -53,7 +53,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
         timeout = 5
         login_user(self.driver, timeout-4, self.live_server_url)
         time.sleep(3)
-        self.driver.get('%s%s'%(self.live_server_url, '/view/shopping-cart/page/'))
+        self.driver.get('%s%s'%(self.live_server_url, '/shop/view-cart/page/'))
         
 
 
@@ -95,7 +95,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
         scroll_to_button_and_click(self.driver, view_orders_button)
 
         WebDriverWait(self.driver, 3).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, '.ordered-items-table'))
+            EC.presence_of_element_located((By.CSS_SELECTOR, '.ordered-items'))
         )
         self.assertIn('No Previously Ordered Items', self.driver.page_source)
 
@@ -105,7 +105,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
 
         login_user(self.driver, timeout-4, self.live_server_url)
         time.sleep(3)
-        self.driver.get('%s%s'%(self.live_server_url, '/view/shopping-cart/page/'))
+        self.driver.get('%s%s'%(self.live_server_url, '/shop/view-cart/page/'))
 
         WebDriverWait(self.driver, 3).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, '#shopping-cart-table'))
@@ -149,7 +149,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
 
         login_user(self.driver, timeout-4, self.live_server_url)
         time.sleep(3)
-        self.driver.get('%s%s'%(self.live_server_url, '/view/shopping-cart/page/'))
+        self.driver.get('%s%s'%(self.live_server_url, '/shop/view-cart/page/'))
 
         WebDriverWait(self.driver, 3).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, '#place-order'))
@@ -218,7 +218,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
         time.sleep(5)
 
         WebDriverWait(self.driver, 3).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, '.ordered-items-table'))
+            EC.presence_of_element_located((By.CSS_SELECTOR, '.ordered-items'))
         )
 
         ordered_item = OrderedItem.objects.filter(food_item="Pasta")

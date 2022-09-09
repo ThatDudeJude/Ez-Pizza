@@ -61,7 +61,7 @@ const SubmittedMessage = ({data}) => {
         console.log('submitting order', data.error);
         if (!data.error) {
             let csrf = document.querySelector('#csrftoken').value
-            await fetch('/shop/order-item/', {
+            await fetch('/shop/order-items/', {
                 method: "POST",                
                 headers: {
                     'Accept': 'application/json',
