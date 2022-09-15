@@ -2,7 +2,7 @@
 
 async function getItemData(id) {
     console.log('Getting data');    
-    const res = await fetch(`/delete/shopping-item/${id}`);
+    const res = await fetch(`/shop/delete/shopping-item/${id}`);
     const data = await res.json();        
     return data;    
 }
@@ -94,7 +94,7 @@ function ShoppingModal() {
     const deleteShoppingCartItem = React.useCallback(async (id) => {                
         if (!data.error) {
             let csrf = document.querySelector('#csrftoken').value
-            let res = await fetch(`/delete/shopping-item/${id}/`, {
+            let res = await fetch(`/shop/delete/shopping-item/${id}/`, {
                 method: "DELETE",                
                 headers: {                  
                     'X-CSRFToken': csrf,
