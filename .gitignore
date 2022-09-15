@@ -1,3 +1,5 @@
 .vscode/
+.env
 geckodriver.log
 secret_key.txt
+__pycache__

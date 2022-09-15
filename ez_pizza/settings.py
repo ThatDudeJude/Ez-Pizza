@@ -11,7 +11,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from environs import Env
+import cloudinary
 import os
+
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,6 +47,7 @@ INSTALLED_APPS = [
     'base.apps.BaseConfig', 
     'shop.apps.ShopConfig', 
     'order.apps.OrderConfig', 
+    'cloudinary',    
 ]
 
 MIDDLEWARE = [
@@ -83,10 +89,11 @@ WSGI_APPLICATION = 'ez_pizza.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+    "default": env.dj_db_url("DATABASE_URL")
 }
 
 
@@ -129,8 +136,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL= '/images/'
-
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
@@ -139,7 +144,8 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
-MEDIA_ROOT = BASE_DIR / 'staticfiles/images'
+# MEDIA_URL= '/images/avatars/'
+
 
 # csv files 
 CSV_PATH = BASE_DIR / 'csv_files'
@@ -154,3 +160,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Allowed hosts
 ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]
+
+
+cloudinary.config(
+    cloud_name=env.str('CLOUD_NAME'),
+    api_key=env.str('API_KEY'),
+    api_secret=env.str('API_SECRET')
+)    
