@@ -1,4 +1,5 @@
 {% load static %}
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
        <div class="container-fluid">
            <a class="navbar-brand" href="{% url 'index' %}">EzPizza</a>
@@ -26,8 +27,8 @@
                </ul>
                {% else %}
                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" 
-               aria-expanded="false">
-               <img src="{% static 'images/default_avatar.svg' %}" class='account-avatar' alt="avatar">                       
+               aria-expanded="false">               
+               <img src="https://res.cloudinary.com/gachjudex/image/upload/v1/ezpizza/users/avatars/default_avatar.jpg" class='account-avatar' alt="avatar" />                       
                    Username
                </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">            

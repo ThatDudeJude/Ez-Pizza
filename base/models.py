@@ -22,9 +22,8 @@ class CloudinaryField(BaseCloudinaryField):
 class User(AbstractUser):
     name = models.CharField(max_length=64, null=True, unique=True)
     email = models.EmailField(unique=True)
-    avatar = CloudinaryField(null=True, default='ezpizza/users/avatars/default_avatar.jpg')
+    avatar = CloudinaryField('avatar', default='ezpizza/users/avatars/default_avatar.jpg')
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=64)    
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
-    
+    REQUIRED_FIELDS = []    
