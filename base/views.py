@@ -14,12 +14,13 @@ from .forms import RegisterUserForm, UpdateProfileForm
 
 
 # Create your views here.
-
+account_auth_page = False
 def login_user(request):    
     if request.user.is_authenticated:
         return redirect('index')
     
     auth = 'login'
+    account_auth_page = True
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -37,7 +38,7 @@ def login_user(request):
         else:
             messages.error(request, 'Wrong password.')                        
         
-    context = {"auth": auth}
+    context = {"auth": auth, "account_auth_page": account_auth_page}
     return render(request, 'base/login_register.html', context)
 
 def logout_user(request):
@@ -46,8 +47,9 @@ def logout_user(request):
 
 def register_user(request):
     auth = 'register'    
-    form = RegisterUserForm()
-    context = {'auth': auth, 'form': form}
+    account_auth_page = True
+    form = RegisterUserForm()    
+    context = {'auth': auth, 'form': form, "account_auth_page": account_auth_page}
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)
         print('submitting')
