@@ -26,7 +26,7 @@
     <!-- Modal -->
     <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content bg-dark text-white-50">
+            <div class="modal-content text-white-50">
                 <div class="modal-header d-flex justify-content-end">
                     <button style="color: white" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         <span style="color: white" aria-hidden="true">&times;</span>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="d-grid gap-2 modal-footer-modified">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cancel</button>
-                    <a href="{% url 'delete-delivered-orders' %}" type="button" class="btn btn-success"><i class="fas fa-trash    "></i>Confirm Delete</a>
+                    <a href="{% url 'delete-delivered-orders' %}" type="button" class="btn btn-danger"><i class="fas fa-trash    "></i>Confirm Delete</a>
                 </div>
             </div>
         </div>
