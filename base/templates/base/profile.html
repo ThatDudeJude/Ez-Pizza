@@ -10,10 +10,7 @@
                     <div class="profile_view px-2 px-sm-3 py-5 text-light col-md-8 offset-md-2 col-lg-6 offset-lg-3 offset-xl-4 col-12 position-relative">     
                         <div class="avatar-container col-12 position-absolute">
                             <img src="{{request.user.avatar.url}}" alt="avatar" id="profile-avatar">
-                        </div>     
-                        <div class="col-12 mt-5 justify-content-center ">
-                            <a href="{% url 'user-profile' 'update' %}" type="submit" class="btn btn-outline-success update_profile_btn">Update Profile</a>                
-                        </div>
+                        </div>                             
                         <table class="my-1 my-sm-4 mx-auto profile-table">
                             <tbody>
                                 <tr class="py-3">
@@ -29,11 +26,11 @@
                                     <td class="fs-5 py-3">{{profile.email}}</td>
                                 </tr>
                             </tbody>
-                        </table>
-                        
-    
-                            
-                            
+                        </table>    
+                        <div class="col-12 mt-5 justify-content-center d-inline-flex">
+                            <a href="{% url 'user-profile' 'update' %}" type="submit" class="btn btn-outline-success update_profile_btn">Update Profile</a>                
+                            <a href="{% url 'user-password-change' %}" type="submit" class="btn btn-outline-success update_profile_btn">Update Password</a>                
+                        </div>                                                                                
                     </div>
                     
                         {% else %}        

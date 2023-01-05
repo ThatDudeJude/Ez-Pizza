@@ -163,6 +163,7 @@ ALLOWED_HOSTS = [
     env.str("LOCAL_NETWORK_HOST", default=None),
 ]
 
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 cloudinary.config(
     cloud_name=env.str("CLOUD_NAME"),
