@@ -153,7 +153,7 @@ function ShoppingModal() {
 
                     <div className="d-grid gap-2 modal-footer-modified">                    
                         <button onClick={() => {setData(null); setConfirmDelete(false)}} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" className="btn btn-success" id="delete-item" onClick={() => {deleteShoppingCartItem(itemId);}}>Delete</button>
+                        <button type="button" className="btn btn-danger" id="delete-item" onClick={() => {deleteShoppingCartItem(itemId);}}>Delete</button>
                     </div>
                 }     
                 {confirmOrders &&
@@ -187,11 +187,11 @@ const ShoppingCartMessage = ({data}) => {
     return (
         <div className="col-12 px-sm-4 px-2">
             <CSRF />
-            <table className="col-12 table table-dark" id="delete-orders-confirm">
+            <table className="row col-12 table table-dark" id="delete-orders-confirm">
                 
                     { data &&  
                     
-                    <tbody>
+                    <tbody class="py-3">
                     <tr>
                         <td colSpan="3" className="text-start"><h2>{data.food_item}</h2></td>
                     </tr>

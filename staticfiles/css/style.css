@@ -2,6 +2,7 @@ html,
 body {
   height: max-content;
   background-color: rgb(2, 29, 9);
+  width: 100vw;
 }
 
 .account-avatar,
@@ -23,7 +24,7 @@ body {
 }
 
 .modal-background-color {
-  background-color: rgb(0, 14, 4);
+  background-color: rgb(0, 34, 10);
 }
 
 #profile-avatar {
@@ -83,7 +84,8 @@ body {
   background-color: transparent;
 }
 
-.update_profile_btn {
+.update_profile_btn,
+.update_password_btn {
   display: block;
   width: max-content;
   margin: 0px auto;
@@ -95,8 +97,10 @@ body {
   color: whitesmoke;
 }
 
-.btn-delete-cart-item:hover {
+.btn-delete-cart-item:hover,
+.btn-delete-delivered-item:hover {
   background-color: tomato;
+  color: whitesmoke;
 }
 
 .form-table-red {
@@ -107,14 +111,24 @@ body {
 
 #table-orders-confirm,
 #orders-total-confirm,
-#delete-orders-confirm,
-td {
-  background-color: #000;
+#delete-orders-confirm {
+  background-color: #3c0000;
   border-radius: 5px;
 }
 
-#table-orders-confirm td {
+#table-orders-confirm td,
+#orders-total-confirm td,
+#delete-orders-confirm td {
+  background-color: transparent;
+}
+
+#table-orders-confirm td,
+#delete-orders-confirm td {
   border: unset;
+}
+
+.navbar {
+  width: 100vw;
 }
 
 #nav-large li,
@@ -134,6 +148,10 @@ td {
   margin: 0 auto;
   height: 30px;
   color: rgb(189, 188, 188);
+}
+
+#confirmDelete .modal-content {
+  background-color: rgb(0, 34, 10);
 }
 
 @media (min-width: 769px) {
@@ -162,7 +180,7 @@ td {
   }
   #nav-mobile li a {
     width: max-content;
-    margin: 0 auto;
+    margin: 2px auto;
     height: 30px;
     color: rgb(189, 188, 188);
   }
@@ -260,10 +278,11 @@ td {
   font-size: 20px;
   width: 30px;
   height: 30px;
-  padding: 5px;
+  padding: 2px;
   border-radius: 50%;
   text-align: center;
   left: 70%;
+  top: 10%;
   position: absolute;
   box-shadow: 3px 3px #000;
 }
@@ -275,7 +294,7 @@ td {
 }
 
 #order-confirm-table {
-  background-color: rgb(85, 0, 0);
+  background-color: rgb(40, 0, 0);
 }
 
 .shopping-cart-total,

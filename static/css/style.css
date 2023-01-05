@@ -84,7 +84,8 @@ body {
   background-color: transparent;
 }
 
-.update_profile_btn {
+.update_profile_btn,
+.update_password_btn {
   display: block;
   width: max-content;
   margin: 0px auto;

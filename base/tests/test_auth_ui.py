@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.core import mail
+from django.urls import reverse
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -9,6 +11,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from base.models import User
 import os
 import time
+import re
 
 
 def scroll_to_menu_button(actions, driver, button):
@@ -21,16 +24,18 @@ def scroll_to_menu_button(actions, driver, button):
     time.sleep(5)
 
 
-def login_user(driver, timeout, server):
+def login_user(
+    driver, timeout, server, user_email="test@gmail.com", user_password="123!@#QWE"
+):
     driver.get("%s%s" % (server, "/user/login/"))
     email = driver.find_element(By.XPATH, '//input[@name="email"]')
     password = driver.find_element(By.XPATH, '//input[@name="password"]')
     sign_in = driver.find_element(By.XPATH, '//button[@type="submit"]')
 
     time.sleep(timeout)
-    email.send_keys("test@gmail.com")
+    email.send_keys(user_email)
     time.sleep(timeout)
-    password.send_keys("u555me666$!(")
+    password.send_keys(user_password)
     time.sleep(timeout)
     sign_in.click()
     time.sleep(timeout)
@@ -47,7 +52,7 @@ class TestAuthenticationChrome(StaticLiveServerTestCase):
         "platter.json",
         "specialregular.json",
         "specialsicillian.json",
-        "users.json",
+        "testuser.json",
     ]
 
     @classmethod
@@ -142,13 +147,13 @@ class TestAuthenticationChrome(StaticLiveServerTestCase):
             )
         )
 
-        avatar_input = self.driver.find_element(By.CSS_SELECTOR, "#id_avatar")
+        # avatar_input = self.driver.find_element(By.CSS_SELECTOR, "#id_avatar")
         name_input = self.driver.find_element(By.CSS_SELECTOR, "#id_name")
         username_input = self.driver.find_element(By.CSS_SELECTOR, "#id_username")
         email_input = self.driver.find_element(By.CSS_SELECTOR, "#id_email")
 
-        avatar_input.clear()
-        avatar_input.send_keys(os.getcwd() + "/base/tests/test_Dennis_image.jpg")
+        # avatar_input.clear()
+        # avatar_input.send_keys(os.getcwd() + "/base/tests/test_Dennis_image.jpg")
         name_input.clear()
         name_input.send_keys("Test Updated User")
         username_input.clear()
@@ -259,9 +264,9 @@ class TestAuthenticationChrome(StaticLiveServerTestCase):
         time.sleep(2)
         password1_input = self.driver.find_element(By.CSS_SELECTOR, "#id_password1")
         password2_input = self.driver.find_element(By.CSS_SELECTOR, "#id_password2")
-        password1_input.send_keys("u555me666$!(")
+        password1_input.send_keys("123!@#QWE")
         time.sleep(2)
-        password2_input.send_keys("u555me666$!(")
+        password2_input.send_keys("123!@#QWE")
         time.sleep(2)
         password2_input.send_keys(Keys.ENTER)
 
@@ -289,3 +294,167 @@ class TestAuthenticationChrome(StaticLiveServerTestCase):
         self.assertIn("testusertwo@mail.com", self.driver.page_source)
         self.assertIn("Update Profile", self.driver.page_source)
         time.sleep(3)
+
+    def test_change_password(self):
+        timeout = 5
+
+        login_user(self.driver, timeout - 3, self.live_server_url)
+        dropdown_button = self.driver.find_element(
+            By.XPATH, '//button[@id="dropdownMenuButton1"]'
+        )
+        dropdown_button.click()
+        WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".dropdown-menu"))
+        )
+        profile_button = self.driver.find_elements(
+            By.CSS_SELECTOR, ".dropdown-menu li"
+        )[0]
+        profile_button.click()
+
+        time.sleep(4)
+        self.assertIn("TestUser", self.driver.page_source)
+        self.assertIn("Test User", self.driver.page_source)
+        self.assertIn("test@gmail.com", self.driver.page_source)
+        self.assertIn("Update Profile", self.driver.page_source)
+        time.sleep(3)
+
+        WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located((By.LINK_TEXT, "Update Password"))
+        )
+        password_change_button = self.driver.find_element(
+            By.LINK_TEXT, "Update Password"
+        )
+        password_change_button.click()
+
+        WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located(
+                (By.XPATH, '//form[@id="password-change-form"]')
+            )
+        )
+
+        old_password_input = self.driver.find_element(
+            By.CSS_SELECTOR, "#id_old_password"
+        )
+        new_password1_input = self.driver.find_element(
+            By.CSS_SELECTOR, "#id_new_password1"
+        )
+        new_password2_input = self.driver.find_element(
+            By.CSS_SELECTOR, "#id_new_password2"
+        )
+
+        # avatar_input.clear()
+        # avatar_input.send_keys(os.getcwd() + "/base/tests/test_Dennis_image.jpg")
+        old_password_input.clear()
+        old_password_input.send_keys("123!@#QWE")
+        new_password1_input.clear()
+        new_password1_input.send_keys("456!@#QWE")
+        new_password2_input.clear()
+        new_password2_input.send_keys("456!@#QWE")
+        time.sleep(4)
+
+        new_password2_input.send_keys(Keys.ENTER)
+
+        time.sleep(4)
+
+        self.assertIn("Password Change Successful", self.driver.page_source)
+        self.assertIn("Your password was changed! Login", self.driver.page_source)
+
+        time.sleep(4)
+
+        WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located((By.LINK_TEXT, "here"))
+        )
+
+        login_button = self.driver.find_element(By.LINK_TEXT, "here")
+        login_button.click()
+
+        login_user(
+            self.driver, timeout - 3, self.live_server_url, user_password="456!@#QWE"
+        )
+        self.assertIn("TestUser", self.driver.page_source)
+
+    def test_reset_password(self):
+        timeout = 5
+        self.driver.get("%s%s" % (self.live_server_url, "/user/login/"))
+        time.sleep(2)
+        WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "#reset-password"))
+        )
+
+        reset_password_link = self.driver.find_element(
+            By.CSS_SELECTOR, "#reset-password"
+        )
+
+        reset_password_link.click()
+
+        time.sleep(3)
+
+        WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "#password-reset-form"))
+        )
+
+        self.assertIn("Forgot Your Password?", self.driver.page_source)
+
+        email_input = self.driver.find_element(By.CSS_SELECTOR, "#id_email")
+
+        email_input.send_keys("test@gmail.com")
+
+        time.sleep(2)
+        email_input.send_keys(Keys.ENTER)
+        time.sleep(2)
+
+        WebDriverWait(self.driver, timeout).until(
+            EC.text_to_be_present_in_element((By.TAG_NAME, "h2"), "Check your inbox")
+        )
+
+        print(self.driver.get_cookies())
+        mail_body = mail.outbox[0].body
+
+        args = (
+            re.search(
+                "[\S\s]+(?<=/password_reset_confirm/)([\S]+)/", mail.outbox[0].body
+            )
+            .group(1)
+            .split("/")
+        )
+
+        uid = args[0]
+        token = args[1]
+        self.driver.get(
+            "%s%s"
+            % (
+                self.live_server_url,
+                reverse(
+                    "confirm-password-reset", kwargs={"uidb64": uid, "token": token}
+                ),
+            )
+        )
+
+        time.sleep(2)
+        WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "#password-reset-form"))
+        )
+
+        new_password1_input = self.driver.find_element(
+            By.CSS_SELECTOR, "#id_new_password1"
+        )
+        new_password2_input = self.driver.find_element(
+            By.CSS_SELECTOR, "#id_new_password2"
+        )
+
+        new_password1_input.send_keys("456$%^RTY")
+        new_password2_input.send_keys("456$%^RTY")
+
+        new_password2_input.send_keys(Keys.ENTER)
+
+        time.sleep(2)
+
+        self.assertIn("Password Change Successful", self.driver.page_source)
+        self.assertIn("Your password was changed! Login", self.driver.page_source)
+
+        time.sleep(4)
+
+        login_user(
+            self.driver, timeout - 3, self.live_server_url, user_password="456$%^RTY"
+        )
+        self.assertIn("TestUser", self.driver.page_source)

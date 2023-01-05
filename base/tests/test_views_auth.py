@@ -204,6 +204,7 @@ class PasswordResetTestCase(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, "Reset your ezPizza account password")
         self.assertIn("Test User", mail.outbox[0].body)
+        
 
     def test_view_password_reset_via_email(self):
         c = Client()
