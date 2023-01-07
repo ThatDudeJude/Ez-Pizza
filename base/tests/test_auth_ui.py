@@ -411,9 +411,7 @@ class TestAuthenticationChrome(StaticLiveServerTestCase):
         mail_body = mail.outbox[0].body
 
         args = (
-            re.search(
-                "[\S\s]+(?<=/password_reset_confirm/)([\S]+)/", mail.outbox[0].body
-            )
+            re.search("[\S\s]+(?<=/password_reset_confirm/)([\S]+)/", mail_body)
             .group(1)
             .split("/")
         )

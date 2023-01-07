@@ -182,7 +182,7 @@ def confirm_password_reset(request, uidb64, token):
 
                 return render(request, "base/password_reset_confirm.html", context)
 
-        return render(request, "base/error.html", {"message": "Bad request!"})
+        return render(request, "error.html", {"message": "Bad request!"})
 
     if request.method == "POST":
         uid = urlsafe_base64_decode(uidb64)

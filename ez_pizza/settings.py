@@ -164,6 +164,8 @@ ALLOWED_HOSTS = [
 ]
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_HOST_USER = "Admin"
+EMAIL_HOST_PASSWORD = "password"
 
 cloudinary.config(
     cloud_name=env.str("CLOUD_NAME"),

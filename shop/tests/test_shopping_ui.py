@@ -16,7 +16,7 @@ def login_user(driver, timeout, server):
     time.sleep(timeout)
     email.send_keys('test@gmail.com')
     time.sleep(timeout)
-    password.send_keys('u555me666$!(') 
+    password.send_keys('123!@#QWE') 
     time.sleep(timeout)
     sign_in.click()
     time.sleep(timeout)
@@ -69,7 +69,7 @@ class TestShoppingChrome(StaticLiveServerTestCase):
 
     fixtures = ['regular.json', 'sicillian.json', 'topping.json', 'sub.json', 
                 'pasta.json', 'salad.json', 'platter.json', 'specialregular.json',
-                'specialsicillian.json', 'users.json']    
+                'specialsicillian.json', 'testuser.json']    
 
     @classmethod
     def setUpClass(cls):

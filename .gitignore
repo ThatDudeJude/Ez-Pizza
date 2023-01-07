@@ -2,4 +2,4 @@
 .env
 geckodriver.log
 secret_key.txt
-__pycache__
+*.pyc

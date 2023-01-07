@@ -1,0 +1,31 @@
+<div>
+    <p style="margin-bottom: 8px;">Hello {{ username }}</p>
+    <p style="margin-bottom: 8px;">You placed an order for the following items from ezPizza on {{ time }}</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Food Item</th>
+                <th>Choices</th>
+                <th>Time Ordered</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in ordered_items %}
+                <tr>                                                
+                    <td>{{ item.food_item }}</td>
+                    <td>{{ item.choices }}</td>
+                    <td>{{ item.created }}</td>                                                
+                    <td>{{ item.status }}</td>
+                </tr>                                                    
+                
+            {% endfor %}            
+        </tbody>                        
+    </table>         
+    
+    <p>You can check your orders from your account and track their order status <a href="{{ protocol }}://{{ domain }}/order/view/{{ uid }}/{{ token }}/">here</a></p>
+    <div style="margin-top: 10px;">
+        <p style="margin-bottom: 9px;">Thank you for ordering from EzPizza</p>
+        <p>The EzPizza team</p>
+    </div>
+</div>
