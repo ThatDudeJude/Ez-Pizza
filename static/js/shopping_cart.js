@@ -52,8 +52,11 @@ const StatusMessage = ({data}) => {
                     </p>   )
         }
             <p class="col-10 offset-1 text-center fs-1">
-                {data.message}
+                {data.message}                
             </p>   
+            <p className="col-10 offset-1 text-center fs-3">
+                {data.email? (<span>Order information sent to {data.email}</span>): ""}
+            </p>
             
         </div>
     )
@@ -234,7 +237,7 @@ const ConfirmOrdersMessage = ({data}) => {
                                         <td colSpan="3" className="fs-5 text-start"><p>{item.choices}</p></td>
                                     </tr>
                                     <tr>
-                                        <td colSpan="2" className="fs-5 text-start">Total</td>                        
+                                        <td colSpan="2" className="fs-5 text-start">Price</td>                        
                                         <td className="text-end fs-5 px-2" style={{fontFamily: 'Arial'}}><p>= ${item.price}</p></td>
                                     </tr>
                                 </tbody>
