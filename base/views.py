@@ -148,10 +148,10 @@ def password_reset(request):
                 opts = {
                     "use_https": request.is_secure(),
                     "request": request,
+                    "from_email": "gachjude@gmail.com",
                     "subject_template_name": "base/password_reset_subject.txt",
                     "email_template_name": "base/password_reset_email.html",
                     "extra_email_context": {
-                        "email": "ezPizza@gmail.com",
                         "site_name": "ezPizza",
                         "domain": request.get_host(),
                         "protocol": protocol,

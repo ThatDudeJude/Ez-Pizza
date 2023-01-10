@@ -33,7 +33,7 @@ def send_order_email(request, send_mail, client, orders, token, template):
     }
     html_message = render_to_string(template, context)
     plain_message = strip_tags(html_message)
-    from_email = "admin@ezpizza.com"
+    from_email = "gachjude@gmail.com"
     to = client["email"]
 
     send_mail(subject, html_message, from_email, [to], html_message=html_message)
