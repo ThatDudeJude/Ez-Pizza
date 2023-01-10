@@ -1,0 +1,13 @@
+name: testing
+on: push
+env:
+  INSTALL_REQUIREMENTS: pip3 install requirements.txt
+  RUN_TESTS: python3 manage.py test base.tests.test_views_auth shop.tests.test_models shop.tests.test_shopping order.tests.test_order
+
+jobs:
+  test_project:
+    runs-on: ubuntu-20.04
+    steps:
+      name: Run django tests
+      run: $INSTALL_REQUIREMENTS
+        $RUN_TESTS
