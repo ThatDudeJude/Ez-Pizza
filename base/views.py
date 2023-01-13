@@ -78,8 +78,7 @@ def register_user(request):
     form = RegisterUserForm()
     context = {"auth": auth, "form": form, "account_auth_page": account_auth_page}
     if request.method == "POST":
-        form = RegisterUserForm(request.POST)
-        print("submitting")
+        form = RegisterUserForm(request.POST)    
         if form.is_valid():
             user = form.save()
             login(request, user)

@@ -3,3 +3,9 @@
 geckodriver.log
 secret_key.txt
 *.pyc
+base/__pycache__/**
+order/__pycache__/**
+shop/__pycache__/**
+base/tests/__pycache__/**
+order/tests/__pycache__/**
+shop/tests/__pycache__/**

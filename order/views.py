@@ -78,7 +78,6 @@ def order_shopping_items(request):
                 }
             )
         except (smtplib.SMTPException):
-            print("ordering from cart went wrong")
             return JsonResponse({"error": True, "message": "Something went wrong"})
     return redirect("show_ordered_items", status="ALL")
 
@@ -91,11 +90,9 @@ def get_time(created):
 def show_ordered_items_from_email_link(request, uidb64, token):
     if request.method == "GET":
         id = urlsafe_base64_decode(uidb64)
-        print("id", id)
         try:
             user = User.objects.get(pk=id)
             if generate_order_token.check_token(token) and user == request.user:
-                print("Showing ")
                 return redirect("show-ordered-items", status="retrieve")
 
         except ValueError:
