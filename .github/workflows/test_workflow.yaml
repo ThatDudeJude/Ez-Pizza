@@ -1,13 +1,42 @@
 name: testing
 on: push
 env:
-  INSTALL_REQUIREMENTS: pip3 install requirements.txt
-  RUN_TESTS: python3 manage.py test base.tests.test_views_auth shop.tests.test_models shop.tests.test_shopping order.tests.test_order
+  INSTALL_REQUIREMENTS: pip3 install -r requirements.txt
+  RUN_DJANGO_TESTS: python3 manage.py test base.tests.test_views_auth shop.tests.test_models shop.tests.test_shopping order.tests.test_order
+  RUN_SELENIUM_TESTS: python3 manage.py test base.tests.test_auth_ui shop.tests.test_shopping_ui order.tests.test_orders_ui
 
 jobs:
-  test_project:
+  unit_tests:
     runs-on: ubuntu-20.04
     steps:
-      name: Run django tests
-      run: $INSTALL_REQUIREMENTS
-        $RUN_TESTS
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8.5'
+      - name: Run django unit tests
+        run: |
+          $INSTALL_REQUIREMENTS
+          $RUN_DJANGO_TESTS
+
+  e2e_tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8.5'
+      - name: Prepare Selenium
+        uses: nanasess/setup-chromedriver@v1.0.5
+      - name: Start XVFB
+        run: |
+          Xvfb :99 &
+      - name: Run selenium tests
+        run: |
+          $INSTALL_REQUIREMENTS
+          $RUN_SELENIUM_TESTS
+        env:
+          DISPLAY: :99
