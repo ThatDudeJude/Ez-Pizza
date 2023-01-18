@@ -407,7 +407,6 @@ class TestAuthenticationChrome(StaticLiveServerTestCase):
             EC.text_to_be_present_in_element((By.TAG_NAME, "h2"), "Check your inbox")
         )
 
-        print(self.driver.get_cookies())
         mail_body = mail.outbox[0].body
 
         args = (
