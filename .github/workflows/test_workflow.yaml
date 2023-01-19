@@ -6,6 +6,11 @@ env:
   RUN_SELENIUM_TESTS: python3 manage.py test base.tests.test_auth_ui shop.tests.test_shopping_ui order.tests.test_orders_ui
   DATABASE_URL: ${{secrets.DATABASE_URL}}
   SECRET_KEY: ${{secrets.SECRET_KEY}}
+  DEFAULT_FROM_EMAIL: ${{secrets.DEFAULT_FROM_EMAIL}}
+  EMAIL_BACKEND: django.core.mail.backends.console.EmailBackend
+  CLOUD_NAME: ${{secrets.CLOUD_NAME}}
+  API_KEY: ${{secrets.API_KEY}}
+  API_SECRET: ${{secrets.API_SECRET}}
 
 jobs:
   unit_tests:
