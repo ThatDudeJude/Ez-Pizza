@@ -52,8 +52,8 @@ class UserAuthenticationPageTestCase(TestCase):
         self.assertIn(b"TestUser", response.content)
         self.assertIn(b"Menu", response.content)
 
-        with open("fixtures/testuser.json", "w") as f:
-            call_command("dumpdata", "base.user", stdout=f)
+        # with open("fixtures/testuser.json", "w") as f:
+        #     call_command("dumpdata", "base.user", stdout=f)
 
 
 class UserAuthenticationTestCase(TestCase):
@@ -204,7 +204,6 @@ class PasswordResetTestCase(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, "Reset your ezPizza account password")
         self.assertIn("Test User", mail.outbox[0].body)
-        
 
     def test_view_password_reset_via_email(self):
         c = Client()

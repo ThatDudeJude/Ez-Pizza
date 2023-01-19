@@ -71,7 +71,7 @@ class SitePagesTestCase(TestCase):
             "/shop/order-items/", data["message"], content_type="application/json"
         )
 
-        call_command("dumpdata", "shop.ShoppingCartItem")
+        # call_command("dumpdata", "shop.ShoppingCartItem")
 
         response = self.client.get("/shop/view-cart/page/", follow=True)
         self.assertEqual(response.status_code, 200)
@@ -105,7 +105,7 @@ class SitePagesTestCase(TestCase):
             "/shop/order-items/", data["message"], content_type="application/json"
         )
 
-        call_command("dumpdata", "shop.ShoppingCartItem")
+        # call_command("dumpdata", "shop.ShoppingCartItem")
 
         response = self.client.get("/shop/view-cart/page/", follow=True)
         self.assertEqual(response.status_code, 200)
@@ -141,7 +141,7 @@ class SitePagesTestCase(TestCase):
             "/shop/order-items/", data["message"], content_type="application/json"
         )
 
-        call_command("dumpdata", "shop.ShoppingCartItem")
+        # call_command("dumpdata", "shop.ShoppingCartItem")
 
         response = self.client.get("/shop/view-cart/page/", follow=True)
         self.assertEqual(response.status_code, 200)
@@ -172,7 +172,7 @@ class SitePagesTestCase(TestCase):
             "/shop/order-items/", data["message"], content_type="application/json"
         )
 
-        call_command("dumpdata", "shop.ShoppingCartItem")
+        # call_command("dumpdata", "shop.ShoppingCartItem")
 
         response = self.client.get("/shop/view-cart/page/", follow=True)
         self.assertEqual(response.status_code, 200)
@@ -199,7 +199,7 @@ class SitePagesTestCase(TestCase):
             "/shop/order-items/", data["message"], content_type="application/json"
         )
 
-        call_command("dumpdata", "shop.ShoppingCartItem")
+        # call_command("dumpdata", "shop.ShoppingCartItem")
 
         response = self.client.get("/shop/view-cart/page/", follow=True)
         self.assertEqual(response.status_code, 200)
@@ -232,7 +232,7 @@ class SitePagesTestCase(TestCase):
             "/shop/order-items/", data["message"], content_type="application/json"
         )
 
-        call_command("dumpdata", "shop.ShoppingCartItem")
+        # call_command("dumpdata", "shop.ShoppingCartItem")
 
         response = self.client.get("/shop/view-cart/page/", follow=True)
         self.assertEqual(response.status_code, 200)
