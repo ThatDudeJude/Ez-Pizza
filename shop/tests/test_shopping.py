@@ -49,9 +49,11 @@ class SitePagesTestCase(TestCase):
 
     def test_regular_pizza_shopping_cart(self):
 
-        toppingOne = Topping.objects.get(pk=1).topping
-        toppingTwo = Topping.objects.get(pk=2).topping
-        toppingThree = Topping.objects.get(pk=3).topping
+        toppings = Topping.objects.all()
+
+        toppingOne = toppings[0].topping
+        toppingTwo = toppings[1].topping
+        toppingThree = toppings[2].topping
         small_price = str(Regular.objects.get(delicacy="3 Toppings").small)
         response = self.client.post(
             "/shop/add/pizza/",
@@ -83,9 +85,11 @@ class SitePagesTestCase(TestCase):
 
     def test_sicillian_pizza_shopping_cart(self):
 
-        toppingOne = Topping.objects.get(pk=1).topping
-        toppingTwo = Topping.objects.get(pk=2).topping
-        toppingThree = Topping.objects.get(pk=3).topping
+        toppings = Topping.objects.all()
+
+        toppingOne = toppings[0].topping
+        toppingTwo = toppings[1].topping
+        toppingThree = toppings[2].topping
         small_price = str(Sicillian.objects.get(delicacy="3 Items").small)
         response = self.client.post(
             "/shop/add/pizza/",
