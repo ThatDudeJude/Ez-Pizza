@@ -31,7 +31,9 @@ jobs:
           python-version: '3.8.5'
       - name: Prepare Selenium
         uses: nanasess/setup-chromedriver@v1.0.5
-      - run: mv /usr/local/chromedriver /usr/bin/
+      - run: |
+          sudo mv /usr/local/bin/chromedriver /usr/bin/
+          chromedriver --url-base=/wd/hub &
       - name: Start XVFB
         run: |
           Xvfb :99 &
