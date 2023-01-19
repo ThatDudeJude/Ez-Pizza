@@ -11,8 +11,6 @@ from order.models import OrderedItem
 import time
 import re
 
-from sqlalchemy import delete
-
 
 def login_user(driver, timeout, server):
     driver.get("%s%s" % (server, "/user/login/"))
