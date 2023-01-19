@@ -4,6 +4,8 @@ env:
   INSTALL_REQUIREMENTS: pip3 install -r requirements.txt
   RUN_DJANGO_TESTS: python3 manage.py test base.tests.test_views_auth shop.tests.test_models shop.tests.test_shopping order.tests.test_order
   RUN_SELENIUM_TESTS: python3 manage.py test base.tests.test_auth_ui shop.tests.test_shopping_ui order.tests.test_orders_ui
+  DATABASE_URL: ${{secrets.DATABASE_URL}}
+  SECRET_KEY: ${{secrets.SECRET_KEY}}
 
 jobs:
   unit_tests:
