@@ -3,7 +3,6 @@ on: push
 env:
   INSTALL_REQUIREMENTS: pip3 install -r requirements.txt
   RUN_DJANGO_TESTS: python3 manage.py test base.tests.test_views_auth shop.tests.test_models shop.tests.test_shopping order.tests.test_order
-  DATABASE_URL: ${{secrets.DATABASE_URL}}
   SECRET_KEY: ${{secrets.SECRET_KEY}}
   DEFAULT_FROM_EMAIL: ${{secrets.DEFAULT_FROM_EMAIL}}
   EMAIL_BACKEND: django.core.mail.backends.console.EmailBackend
@@ -14,6 +13,20 @@ env:
 jobs:
   unit_tests:
     runs-on: ubuntu-20.04
+    services:
+      postgres:
+        image: postgres:12-alpine
+        env:
+          POSTGRES_USER: localUser
+          POSTGRES_PASSWORD: localPassword
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -25,10 +38,26 @@ jobs:
         run: |
           $INSTALL_REQUIREMENTS
           $RUN_DJANGO_TESTS
+        env:
+          DATABASE_URL: postgresql://localUser:localPassword@localhost:5432/test
 
   e2e_tests:
     needs: unit_tests
     runs-on: ubuntu-20.04
+    services:
+      postgres:
+        image: postgres:12-alpine
+        env:
+          POSTGRES_USER: localUser
+          POSTGRES_PASSWORD: localPassword
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -52,3 +81,4 @@ jobs:
           python3 manage.py test order.tests.test_orders_ui
         env:
           DISPLAY: :99
+          DATABASE_URL: postgresql://localUser:localPassword@localhost:5432/test
