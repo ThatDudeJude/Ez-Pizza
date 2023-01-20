@@ -3,7 +3,6 @@ on: push
 env:
   INSTALL_REQUIREMENTS: pip3 install -r requirements.txt
   RUN_DJANGO_TESTS: python3 manage.py test base.tests.test_views_auth shop.tests.test_models shop.tests.test_shopping order.tests.test_order
-  RUN_SELENIUM_TESTS: python3 manage.py test base.tests.test_auth_ui shop.tests.test_shopping_ui order.tests.test_orders_ui
   DATABASE_URL: ${{secrets.DATABASE_URL}}
   SECRET_KEY: ${{secrets.SECRET_KEY}}
   DEFAULT_FROM_EMAIL: ${{secrets.DEFAULT_FROM_EMAIL}}
@@ -28,6 +27,7 @@ jobs:
           $RUN_DJANGO_TESTS
 
   e2e_tests:
+    needs: unit_tests
     runs-on: ubuntu-20.04
     steps:
       - name: Check out code
@@ -47,6 +47,8 @@ jobs:
       - name: Run selenium tests
         run: |
           $INSTALL_REQUIREMENTS
-          $RUN_SELENIUM_TESTS
+          python3 manage.py test base.tests.test_auth_ui 
+          python3 manage.py test shop.tests.test_shopping_ui 
+          python3 manage.py test order.tests.test_orders_ui
         env:
           DISPLAY: :99

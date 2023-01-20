@@ -41,17 +41,17 @@ const StatusMessage = ({data}) => {
         <div className="row px-sm-4 px-2 fs-1 text-center">
             {/(order|deleted)/ig.test(data.message)? 
             (
-             <p class="col-10 offset-1 text-center">
-                 <i class="fas fa-check-circle fa-5x"></i>
+             <p className="col-10 offset-1 text-center">
+                 <i className="fas fa-check-circle fa-5x"></i>
              </p>   
             
         ):
                 (
-                    <p class="col-10 offset-1 text-center">
-                        <i class="fas fa-times-circle fa-5x"></i>
+                    <p className="col-10 offset-1 text-center">
+                        <i className="fas fa-times-circle fa-5x"></i>
                     </p>   )
         }
-            <p class="col-10 offset-1 text-center fs-1">
+            <p className="col-10 offset-1 text-center fs-1">
                 {data.message}                
             </p>   
             <p className="col-10 offset-1 text-center fs-3">
@@ -194,7 +194,7 @@ const ShoppingCartMessage = ({data}) => {
                 
                     { data &&  
                     
-                    <tbody class="py-3">
+                    <tbody className="py-3">
                     <tr>
                         <td colSpan="3" className="text-start"><h2>{data.food_item}</h2></td>
                     </tr>

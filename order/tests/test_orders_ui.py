@@ -92,7 +92,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
         view_orders_button = self.driver.find_element(By.LINK_TEXT, "View Orders")
         scroll_to_button_and_click(self.driver, view_orders_button)
 
-        WebDriverWait(self.driver, 3).until(
+        WebDriverWait(self.driver, 6).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, ".ordered-items"))
         )
         self.assertIn("No Previously Ordered Items", self.driver.page_source)
@@ -105,7 +105,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
         time.sleep(3)
         self.driver.get("%s%s" % (self.live_server_url, "/shop/view-cart/page/"))
 
-        WebDriverWait(self.driver, 3).until(
+        WebDriverWait(self.driver, 6).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "#shopping-cart-table"))
         )
 
@@ -119,7 +119,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
         )
         delete_item_buttons[3].click()
 
-        WebDriverWait(self.driver, 5).until(
+        WebDriverWait(self.driver, 6).until(
             EC.presence_of_element_located((By.XPATH, "//button[@id='delete-item']"))
         )
         time.sleep(4)
@@ -129,7 +129,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
         confirm_delete_button.click()
 
         time.sleep(2)
-        WebDriverWait(self.driver, 5).until(
+        WebDriverWait(self.driver, 6).until(
             EC.presence_of_element_located((By.XPATH, "//button[@id='confirm-action']"))
         )
 
@@ -152,7 +152,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
         time.sleep(3)
         self.driver.get("%s%s" % (self.live_server_url, "/shop/view-cart/page/"))
 
-        WebDriverWait(self.driver, 3).until(
+        WebDriverWait(self.driver, 6).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "#place-order"))
         )
 
@@ -161,7 +161,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
 
         time.sleep(5)
 
-        WebDriverWait(self.driver, 7).until(
+        WebDriverWait(self.driver, 6).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "#add-orders"))
         )
 
@@ -169,7 +169,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
         scroll_to_button_and_click(self.driver, add_order_button)
 
         time.sleep(2)
-        WebDriverWait(self.driver, 5).until(
+        WebDriverWait(self.driver, 6).until(
             EC.presence_of_element_located((By.XPATH, "//button[@id='confirm-action']"))
         )
 
@@ -179,7 +179,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
         confirm_button.click()
         time.sleep(10)
 
-        WebDriverWait(self.driver, 5).until(
+        WebDriverWait(self.driver, 6).until(
             EC.presence_of_element_located((By.LINK_TEXT, "View Menu"))
         )
 
@@ -219,7 +219,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
 
         time.sleep(5)
 
-        WebDriverWait(self.driver, 3).until(
+        WebDriverWait(self.driver, 6).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, ".ordered-items"))
         )
 
@@ -271,7 +271,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
         time.sleep(3)
         self.driver.get("%s%s" % (self.live_server_url, "/shop/view-cart/page/"))
 
-        WebDriverWait(self.driver, 3).until(
+        WebDriverWait(self.driver, 6).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "#place-order"))
         )
 
@@ -280,7 +280,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
 
         time.sleep(5)
 
-        WebDriverWait(self.driver, 7).until(
+        WebDriverWait(self.driver, 6).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "#add-orders"))
         )
 
@@ -288,7 +288,7 @@ class TestOrdersChrome(StaticLiveServerTestCase):
         scroll_to_button_and_click(self.driver, add_order_button)
 
         time.sleep(2)
-        WebDriverWait(self.driver, 5).until(
+        WebDriverWait(self.driver, 6).until(
             EC.presence_of_element_located((By.XPATH, "//button[@id='confirm-action']"))
         )
 
