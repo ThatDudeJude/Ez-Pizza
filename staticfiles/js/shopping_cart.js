@@ -190,7 +190,7 @@ const ShoppingCartMessage = ({data}) => {
     return (
         <div className="col-12 px-sm-4 px-2">
             <CSRF />
-            <table className="row col-12 table table-dark" id="delete-orders-confirm">
+            <table className="row col-12 table table-dark mx-0" id="delete-orders-confirm">
                 
                     { data &&  
                     
