@@ -156,7 +156,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Allowed hosts
 ALLOWED_HOSTS = [
-    ".herokuapp.com",
+    ".up.railway.app",
     "localhost",
     "127.0.0.1",
     "0.0.0.0",
