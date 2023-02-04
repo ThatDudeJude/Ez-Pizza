@@ -176,7 +176,8 @@ body {
   #nav-mobile li a {
     width: max-content;
     margin: 2px auto;
-    height: 30px;
+    height: 20px;
+    padding: 1px;
     color: rgb(189, 188, 188);
   }
 }

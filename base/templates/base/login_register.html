@@ -35,12 +35,13 @@
                         </ul>
                         {% endif %}
                         <div class="col-12 fs-5 my-4">
-                            <p>Don't have an account? Register <a href="{% url 'register-user' %}">here</a></p>
+                            <p>Don't have an account? Register <a href="{% url 'register-user' %}" style="color: whitesmoke;">here</a></p>
                         </div>
                             
                         {% else %}
                         <form action="/user/register/" method="post" id="register-user-form">
                             {% csrf_token %}                            
+                            <h1 class="col-12 text-center my-3">Register</h1>
                              {% for field in form %}      
                              
                              <div class="form-group my-3">
