@@ -190,20 +190,20 @@ const ShoppingCartMessage = ({data}) => {
     return (
         <div className="col-12 px-sm-4 px-2">
             <CSRF />
-            <table className="row col-12 table table-dark mx-0" id="delete-orders-confirm">
+            <table className="table table-dark mx-0" id="delete-orders-confirm">
                 
                     { data &&  
                     
                     <tbody className="py-3">
                     <tr>
-                        <td colSpan="3" className="text-start"><h2>{data.food_item}</h2></td>
+                        <td colSpan="3" className="text-start pt-3"><h2>{data.food_item}</h2></td>
                     </tr>
                     <tr>
                         <td colSpan="3" className="fs-5 text-start"><p>{data.choices}</p></td>
                     </tr>
                     <tr>
-                        <td colSpan="2" className="fs-5 text-start">Total</td>                        
-                        <td className="text-end fs-4" style={{fontFamily: 'Arial'}}><p>= ${data.price}</p></td>
+                        <td colSpan="2" className="fs-5 text-start pb-2">Total</td>                        
+                        <td colSpan="1" className="text-end fs-4 pb-2" style={{fontFamily: 'Arial'}}><p>= ${data.price}</p></td>
                     </tr>
                     </tbody>
                     }                
