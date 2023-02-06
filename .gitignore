@@ -8,5 +8,6 @@ secret_key.txt
 **/react-dom/**
 **/babel.min.js
 **/bootstrap.min.js
-**/fontawesome-free-5.15.4/**
+**/fontawesome-free-5.15.4/js/**
 db.sqlite3
+/static/**
