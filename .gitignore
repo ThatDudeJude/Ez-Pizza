@@ -4,3 +4,8 @@ geckodriver.log
 secret_key.txt
 *.pyc
 **/__pycache__/**
+**/react/**
+**/react-dom/**
+**/babel.min.js
+**/bootstrap.min.js
+**/fontawesome-free-5.15.4/**
