@@ -225,8 +225,7 @@ function OrderForm() {
                             <h2 className="modal-title text-center col-12">{
                             submitted ? 'Placed Order': (orderInfo && orderInfo.name)}
                             {submitted ? '' :
-                                <button onClick={() => {setOrderInfo({}); setOrder(''); setPriceAvailable(false)}} style={{color: 'white'}} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                    <span onClick={() => {setOrderInfo({}); setOrder(''); setPriceAvailable(false)}} style={{color: 'white'}} aria-hidden="true">&times;</span>
+                                <button onClick={() => {setOrderInfo({}); setOrder(''); setPriceAvailable(false)}} style={{color: 'white'}} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">                                    
                                 </button>
                             }
                             </h2>
