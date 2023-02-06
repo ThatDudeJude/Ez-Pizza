@@ -9,3 +9,4 @@ secret_key.txt
 **/babel.min.js
 **/bootstrap.min.js
 **/fontawesome-free-5.15.4/**
+db.sqlite3
