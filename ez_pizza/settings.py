@@ -150,6 +150,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Allowed hosts
 ALLOWED_HOSTS = [
     ".up.railway.app",
+    ".onrender.com",
     "localhost",
     "127.0.0.1",
     "0.0.0.0",
