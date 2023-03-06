@@ -25,8 +25,7 @@ This web application lets users place pizza orders online, receive email confima
     mkdir ez_pizza
     cd ez_pizza
    ```
-3. Clone this github repository here: https://github.com/ThatDudeJude/Ez-Pizza.git
-   `
+3. Clone this github repository here: https://github.com/ThatDudeJude/Ez-Pizza   
 4. Ensure that [python](https://www.python.org) version v3.8+ and pip is installed in your computer.
 5. Install a postgres server for your OS ([more info here](https://www.postgres.org/download)) if not installed. For windows users, you can add psql.exe to path.
 6. Create a new virtual environment and activate it .For Linux and Mac OS run `python3 -m venv venv && ./venv/bin/activate` . For Windows cmd.exe run `c:\>c:\Python38\python -m venv venv && venv/SCRIPTS/activate.bat` .
@@ -42,7 +41,7 @@ This web application lets users place pizza orders online, receive email confima
     API_KEY=[api_key]
     API_SECRET=[api_secret]
 ```
-11.   Set up an smtp service, preferrably [gmail's smtp](https://dev.to/abderrahmanemustapha/how-to-send-email-with-django-and-gmail-in-production-the-right-way-24ab). Add the following variables to your environment
+1.    Set up an smtp service, preferrably [gmail's smtp](https://dev.to/abderrahmanemustapha/how-to-send-email-with-django-and-gmail-in-production-the-right-way-24ab). Add the following variables to your environment
 ```
     DEFAULT_FROM_EMAIL=[youraccount@gmail.com]
     EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
@@ -50,7 +49,7 @@ This web application lets users place pizza orders online, receive email confima
     EMAIL_HOST_USER=[youraccount@gmail.com]
     EMAIL_HOST_PASSWORD=[your smtp service account password]        
 ```
-12.   Open a new terminal and create a postgres database for development and testing purposes. 
+1.    Open a new terminal and create a postgres database for development and testing purposes. 
 
 For Mac and Linux users, run :
 ```    
