@@ -40,7 +40,6 @@ jobs:
           $RUN_DJANGO_TESTS
         env:
           DATABASE_URL: postgresql://localUser:localPassword@localhost:5432/test
-
   e2e_tests:
     needs: unit_tests
     runs-on: ubuntu-20.04
