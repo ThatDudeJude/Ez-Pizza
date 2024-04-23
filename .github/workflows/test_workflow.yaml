@@ -65,7 +65,7 @@ jobs:
         with:
           python-version: '3.8.5'
       - name: Prepare Selenium
-        uses: nanasess/setup-chromedriver@v1.0.5
+        uses: nanasess/setup-chromedriver@v2
       - run: |
           sudo mv /usr/local/bin/chromedriver /usr/bin/
           chromedriver --url-base=/wd/hub &
