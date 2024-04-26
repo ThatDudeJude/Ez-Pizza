@@ -45,7 +45,7 @@ def order_shopping_items(request):
         try:
             latest_orders = []
             item_prices = []
-            ordering_client = {"name": request.user.name, "email": request.user.email}
+            ordering_client = {"name": request.user.username, "email": request.user.email}
             shopping_cart = ShoppingCartItem.objects.filter(client=request.user)
             for item in shopping_cart:
                 order_item = OrderedItem(
