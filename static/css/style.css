@@ -171,6 +171,7 @@ body {
     width: 100px;
     border-radius: 20px;
     display: inline-block;
+    padding: 5px;
   }
 
   #nav-mobile li:hover {
